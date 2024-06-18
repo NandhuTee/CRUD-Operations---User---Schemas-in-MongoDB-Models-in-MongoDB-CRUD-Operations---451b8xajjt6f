@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
-  // Implement the user schema fields:
-  // name as String and
-  // email as a String,
-  name:{
-    type:String
+  name: {
+    type: String,
+    required: true // Adding a required field ensures that a user must have a name
   },
-  email:{
-    type:String,
+  email: {
+    type: String,
+    required: true, // Adding a required field ensures that a user must have an email
+    unique: true // Ensuring that the email is unique in the database
   }
 });
 
 // Create and export the User model
-module.exports =mongoose.model('User',userScheme);
+module.exports = mongoose.model('User', userSchema);
