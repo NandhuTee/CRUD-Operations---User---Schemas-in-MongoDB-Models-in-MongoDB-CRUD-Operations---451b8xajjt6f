@@ -5,11 +5,23 @@ const router = express.Router();
 
 // Create a new user
 router.post('/users', async (req, res) => {
+   
   // Implement user creation logic here
   // 1. Extract user data from the request body (req.body)
+  const {name, email} =req.body;
+  
   // 2. Create a new user using User.create()
-  // 3. Handle success: Respond with a 201 status code and the created user
-  // 4. Handle errors: Respond with appropriate error messages and status codes
+  try{
+  const newUser =await User.create({name,email});
+    // 3. Handle success: Respond with a 201 status code and the created user
+    res.status(201).json({message:'User created',data:newUser});
+  }
+  catch(err){
+    // 4. Handle errors: Respond with appropriate error messages and status codes
+    res.status(500).json(message: '"Internal server error"'});
+  }
+    
+    
 });
 
 // Retrieve a user by ID
