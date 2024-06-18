@@ -4,17 +4,15 @@ const mongoose = require('mongoose');
 
 dotenv.config();
 
-//connect to DB
-mongoose.set('useCreateIndex', true);
-mongoose.set('useFindAndModify', false);
-
-const url = process.env.MONGO_URL || 'mongodb://0.0.0.0:27017/users';
-mongoose.connect(
-  url,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log('connected to DB');
-  }
-);
-
-app.listen(3000, () => console.log('Server running......'));
+// Connect to MongoDB
+const url = process.env.MONGO_URL || 'mongodb://localhost:27017/users';
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB');
+    app.listen(3000, () => {
+      console.log('Server running on port 3000');
+    });
+  })
+  .catch(err => {
+    console.error('Error connecting to MongoDB:', err);
+  });
