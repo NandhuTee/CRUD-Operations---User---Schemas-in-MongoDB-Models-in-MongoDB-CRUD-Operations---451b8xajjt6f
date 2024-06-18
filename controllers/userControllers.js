@@ -4,7 +4,6 @@ const express = require('express');
 const router = express.Router();
 
 // Create a new user
-// Create a new user
 router.post('/users', async (req, res) => {
   const { name, email } = req.body;
 
@@ -16,7 +15,6 @@ router.post('/users', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
 
 // Retrieve a user by ID
 router.get('/users/:id', async (req, res) => {
